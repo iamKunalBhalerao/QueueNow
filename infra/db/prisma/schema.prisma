@@ -24,7 +24,8 @@ model SocialAccount {
   userId            String
   provider          String
   providerAccountId String
-  accessToken       String
+  accessToken       String   @db.Text
+  refreshToken      String?  @db.Text
   expiresAt         DateTime
   user              User     @relation(fields: [userId], references: [id])
 

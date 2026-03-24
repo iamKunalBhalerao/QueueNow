@@ -6,6 +6,7 @@ import {
   signUpController,
 } from "../controllers/auth.controller";
 import {
+  getLinkedInStatusController,
   linkedInCallbackController,
   linkedInSetupController,
 } from "../controllers/linkedIn.controller";
@@ -20,6 +21,7 @@ authRouter.route("/refresh-account").post(refreshTokenController);
 
 // LinkedIn Routes
 authRouter.route("/linkedin").get(authMiddleware, linkedInSetupController);
+authRouter.route("/linkedin/status").get(authMiddleware, getLinkedInStatusController);
 authRouter
   .route("/linkedin/callback")
   .get(authMiddleware, linkedInCallbackController);

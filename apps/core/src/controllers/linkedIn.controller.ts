@@ -68,3 +68,38 @@ export const linkedInCallbackController = async (
     next(error);
   }
 };
+
+export const getLinkedInStatusController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const socialAccount = await prisma.socialAccount.findUnique({
+      where: {
+        userId_provider: {
+          userId,
+          provider: "LINKEDIN",
+        },
+      },
+      select: {
+        id: true,
+        provider: true,
+        expiresAt: true,
+      },
+    });
+
+    return res.status(200).json({
+      connected: !!socialAccount,
+      account: socialAccount,
+    });
+  } catch (error) {
+    next(error);
+  }
+};

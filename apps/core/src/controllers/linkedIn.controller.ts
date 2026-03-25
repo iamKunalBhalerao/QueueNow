@@ -52,6 +52,7 @@ export const linkedInCallbackController = async (
       create: {
         userId: userId,
         provider: "LINKEDIN",
+        name: profile.name,
         accessToken: tokenData.access_token,
         expiresAt: new Date(Date.now() + tokenData.expires_in * 1000),
         providerAccountId: profile.sub,
@@ -103,13 +104,47 @@ export const getLinkedInStatusController = async (
       select: {
         id: true,
         provider: true,
+        providerAccountId: true,
+        name: true,
+        avatarUrl: true,
+        accessToken: true,
         expiresAt: true,
       },
     });
 
+    if (!socialAccount) {
+      return res.status(200).json({
+        connected: false,
+        status: "not_connected",
+        account: null,
+      });
+    }
+
+    if (socialAccount.expiresAt < new Date()) {
+      return res.status(401).json({
+        connected: false,
+        status: "expired",
+        profile: {
+          name: socialAccount.name,
+        },
+        expiredAt: socialAccount.expiresAt,
+      });
+    }
+
+    const totalMs = 60 * 24 * 60 * 60 * 1000; // LinkedIn tokens ~60 days
+    const remainingMs = socialAccount.expiresAt.getTime() - Date.now();
+
     return res.status(200).json({
       connected: !!socialAccount,
-      account: socialAccount,
+      status: "connected",
+      profile: {
+        name: socialAccount.name,
+        avatarUrl: socialAccount.avatarUrl,
+      },
+      token: {
+        expiresAt: socialAccount.expiresAt,
+        percentRemaining: Math.round((remainingMs / totalMs) * 100)
+      }
     });
   } catch (error) {
     next(error);

@@ -24,20 +24,14 @@ model SocialAccount {
   userId            String
   provider          Provider
   providerAccountId String
+  name              String
   avatarUrl         String?
-  status            AccountStatus @default(ACTIVE)
   accessToken       String        @db.Text
   refreshToken      String?       @db.Text
   expiresAt         DateTime
   user              User          @relation(fields: [userId], references: [id])
 
   @@unique([userId, provider])
-}
-
-enum AccountStatus {
-  ACTIVE
-  EXPIRED
-  REVOKED
 }
 
 enum Provider {

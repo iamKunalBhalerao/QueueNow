@@ -39,23 +39,23 @@ export const linkedInCallbackController = async (
 
     const CallBackData = await prisma.socialAccount.upsert({
       where: {
-        userId_provider: {
+        userId_platform: {
           userId: userId,
-          provider: "LINKEDIN",
+          platform: "LINKEDIN",
         },
       },
       update: {
         accessToken: tokenData.access_token,
         expiresAt: new Date(Date.now() + tokenData.expires_in * 1000),
-        providerAccountId: profile.sub,
+        platformAccountId: profile.sub,
       },
       create: {
         userId: userId,
-        provider: "LINKEDIN",
+        platform: "LINKEDIN",
         name: profile.name,
         accessToken: tokenData.access_token,
         expiresAt: new Date(Date.now() + tokenData.expires_in * 1000),
-        providerAccountId: profile.sub,
+        platformAccountId: profile.sub,
       },
     });
 
@@ -96,15 +96,15 @@ export const getLinkedInStatusController = async (
 
     const socialAccount = await prisma.socialAccount.findUnique({
       where: {
-        userId_provider: {
+        userId_platform: {
           userId,
-          provider: "LINKEDIN",
+          platform: "LINKEDIN",
         },
       },
       select: {
         id: true,
-        provider: true,
-        providerAccountId: true,
+        platform: true,
+        platformAccountId: true,
         name: true,
         avatarUrl: true,
         accessToken: true,

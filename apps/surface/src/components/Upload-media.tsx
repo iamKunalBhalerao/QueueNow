@@ -243,10 +243,11 @@ export function UploadMedia({ onMediaSelect }: MediaUploadProps) {
                   </div>
 
                   {/* Upload Button */}
-                  <CraftButton>
-                    <CraftButtonLabel>Click me</CraftButtonLabel>
+                  <CraftButton className="rounded-lg">
+                    <CraftButtonLabel>Upload</CraftButtonLabel>
                     <CraftButtonIcon>
-                      <ArrowUpRightIcon className="size-3 stroke-2 transition-transform duration-500 group-hover:rotate-45" />
+                      <Upload className="size-3 stroke-2 transition-transform duration-500 group-hover:rotate-45" />
+                      {/* <ArrowUpRightIcon className="size-3 stroke-2 transition-transform duration-500 group-hover:rotate-45" /> */}
                     </CraftButtonIcon>
                   </CraftButton>
                   {/* Remove Button */}

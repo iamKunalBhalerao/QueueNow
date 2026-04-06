@@ -12,7 +12,7 @@ export default function Success() {
   }, []);
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-linear-to-br from-green-50 to-emerald-50 flex items-center justify-center p-4">
         <div className="text-center max-w-md">
           <div className="mb-6 flex justify-center">
             <div className="relative w-24 h-24">
@@ -37,7 +37,7 @@ export default function Success() {
           <p className="text-lg text-gray-600 mb-8">
             Your request has been completed successfully.
           </p>
-{/* 
+          {/* 
           <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl">
             Continue
           </button> */}

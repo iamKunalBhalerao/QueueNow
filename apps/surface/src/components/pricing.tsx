@@ -102,10 +102,10 @@ const PlanCard = ({ plan }: { plan: PricingPlan }) => {
               className="pointer-events-none absolute inset-0 -top-px -left-2 z-0 not-dark:opacity-50"
               style={{
                 backgroundImage: `
-        repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-        repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-        radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
-        radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
+        repeating-linear-linear(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+        repeating-linear-linear(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+        radial-linear(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
+        radial-linear(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
       `,
                 backgroundSize: "40px 40px, 40px 40px, 40px 40px, 40px 40px",
               }}

@@ -12,7 +12,7 @@ export default function BackgroundWrapper({
         <div
           className="absolute inset-0 z-0"
           style={{
-            background: "radial-gradient(125% 125% at 50% 90%, var(--background) 40%, #6366f1 100%)",
+            background: "radial-linear(125% 125% at 50% 90%, var(--background) 40%, #6366f1 100%)",
           }}
         />
         <main className="relative z-10">{children}</main>

@@ -2,7 +2,12 @@
 
 import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Upload } from "lucide-react";
+import { X, Upload, ArrowUpRightIcon } from "lucide-react";
+import {
+  CraftButton,
+  CraftButtonIcon,
+  CraftButtonLabel,
+} from "./ui/craft-button";
 
 interface MediaUploadProps {
   onMediaSelect?: (file: File) => void;
@@ -238,12 +243,12 @@ export function UploadMedia({ onMediaSelect }: MediaUploadProps) {
                   </div>
 
                   {/* Upload Button */}
-      <CraftButton>
-        <CraftButtonLabel>Click me</CraftButtonLabel>
-        <CraftButtonIcon>
-          <ArrowUpRightIcon className='size-3 stroke-2 transition-transform duration-500 group-hover:rotate-45' />
-        </CraftButtonIcon>
-      </CraftButton>
+                  <CraftButton>
+                    <CraftButtonLabel>Click me</CraftButtonLabel>
+                    <CraftButtonIcon>
+                      <ArrowUpRightIcon className="size-3 stroke-2 transition-transform duration-500 group-hover:rotate-45" />
+                    </CraftButtonIcon>
+                  </CraftButton>
                   {/* Remove Button */}
                   <motion.button
                     onClick={handleRemove}
@@ -372,7 +377,7 @@ export function UploadMedia({ onMediaSelect }: MediaUploadProps) {
 //           max={100}
 //           className="w-full h-2 rounded-full overflow-hidden bg-gray-200 appearance-none"
 //           style={{
-//             background: `linear-gradient(to right, rgb(37, 99, 235) ${progress}%, rgb(229, 231, 235) ${progress}%)`,
+//             background: `linear(to right, rgb(37, 99, 235) ${progress}%, rgb(229, 231, 235) ${progress}%)`,
 //           }}
 //         />
 //       </div>

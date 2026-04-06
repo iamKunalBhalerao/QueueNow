@@ -81,7 +81,7 @@ const Footer = () => {
           
       {/* Big text section */}
       <div className="w-full flex justify-center items-center pb-6 md:pb-8 select-none pointer-events-none px-4 overflow-hidden">
-        <h1 className="text-[20vw] xl:text-[21vw] leading-[0.8] font-black tracking-tighter bg-gradient-to-b from-foreground to-foreground/20 bg-clip-text text-transparent whitespace-nowrap scale-y-110 origin-bottom">
+        <h1 className="text-[20vw] xl:text-[21vw] leading-[0.8] font-black tracking-tighter bg-linear-to-b from-foreground to-foreground/20 bg-clip-text text-transparent whitespace-nowrap scale-y-110 origin-bottom">
           QueueUp
         </h1>
       </div>

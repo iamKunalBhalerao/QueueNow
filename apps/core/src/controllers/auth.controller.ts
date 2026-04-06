@@ -7,6 +7,7 @@ import {
   refreshTokenService,
 } from "../services/auth.service";
 import type { SignInRequest, SignUpRequest } from "@repo/shared";
+import { findUserById } from "../dao/auth.dao";
 
 export const signUpController = async (
   req: SignUpRequest,
@@ -168,10 +169,12 @@ export const isAuthenticatedController = async (
       });
     }
 
+    const userInfo = await findUserById(user.id);
+
     res.status(200).json({
       success: true,
       isAuthenticated: true,
-      user,
+      user: userInfo,
     });
   } catch (error) {
     next(error);

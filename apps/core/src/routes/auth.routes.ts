@@ -15,7 +15,7 @@ authRouter.route("/signin").post(signInController);
 authRouter.route("/logout").post(logoutController);
 authRouter.route("/refresh-account").post(refreshTokenController);
 authRouter
-  .route("/is-authenticated")
-  .get(authMiddleware, isAuthenticatedController);
+.route("/is-authenticated")
+.get(authMiddleware, isAuthenticatedController);
 
 export default authRouter;

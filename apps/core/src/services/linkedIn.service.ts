@@ -56,7 +56,7 @@ export const createImmediatePostService = async (
   userId: string,
   postData: CreateLinkedInPostInput,
 ) => {
-  // 1. Check if LinkedIn is connected
+  // Check if LinkedIn is connected
   const socialAccount = await getLinkedInSocialAccountDao(userId);
   if (!socialAccount) {
     throw new Error("LinkedIn account not connected");

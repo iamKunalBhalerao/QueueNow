@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import Link from "next/link";
@@ -15,7 +16,7 @@ export default function PlatformConnectCard({
   description,
   bannerSrc,
   redirectUrl,
-  onConnect,
+  // onConnect,
 }: PlatformConnectCardProps) {
   return (
     <>
@@ -37,11 +38,12 @@ export default function PlatformConnectCard({
             <p className="text-gray-600 mb-6 text-sm md:text-base">
               {description}
             </p>
-            <Link href={redirectUrl}>
+            <Link href={redirectUrl} className="pointer-events-none cursor-not-allowed">
               <MagneticButton
                 size={"lg"}
-                className="bg-blue-600 hover:bg-blue-500"
-                onClick={onConnect}
+                className="bg-blue-600 pointer-events-none hover:bg-blue-500 cursor-not-allowed"
+                // onClick={onConnect}
+                disabled={true}
               >
                 Connect {platformName}
               </MagneticButton>

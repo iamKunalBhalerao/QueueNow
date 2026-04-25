@@ -12,11 +12,14 @@ import { useEffect, useState } from "react";
 export default function LinkedIn() {
   const [data, setData] = useState<LinkedInStatus>({ status: "loading" });
 
+  async function fetchLinkedInStatus(setData: (data: LinkedInStatus) => void) {
+    const data = await getLinkedInStatus();
+    console.log("data", data);
+    setData(data as LinkedInStatus);
+  }
+
   useEffect(() => {
-    getLinkedInStatus()
-      .then((res) => res.json())
-      .then(setData)
-      .catch(() => setData({ status: "not_connected" }));
+    fetchLinkedInStatus(setData);
   }, []);
 
   if (data.status === "loading") {

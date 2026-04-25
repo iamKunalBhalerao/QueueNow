@@ -29,7 +29,7 @@ export default function ConnectedCard({
       <div className="rounded-xl border p-5 space-y-4">
         <div className="flex items-center gap-3">
           <img
-            src={profile.avatarUrl || "/default-avatar.png"}
+            src={profile.avatarUrl || "/default-avatar.jpeg"}
             alt={profile.name}
             className="w-12 h-12 rounded-full object-cover"
           />

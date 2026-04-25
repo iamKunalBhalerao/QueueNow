@@ -4,10 +4,11 @@ export default function Twitter() {
   return (
     <>
       <PlatformConnectCard
-        platformName="Twitter"
+        platformName="Twitter - COMMING SOON"
+        redirectUrl={`${process.env.NEXT_PUBLIC_API_URL}/auth/twitter`}
         description="Sync your Twitter profile to enhance your social network"
-        bannerSrc="/twitter-banner.jpg"
-        onConnect={() => console.log("Connecting to Twitter...")}
+        bannerSrc="/twitter-image.png"
+        // onConnect={() => console.log("Connecting to Twitter...")}
       />
     </>
   );

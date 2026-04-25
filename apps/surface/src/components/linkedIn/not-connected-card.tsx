@@ -2,7 +2,7 @@ import { LinkedinIcon } from "lucide-react";
 
 export function NotConnectedCard() {
   const handleConnect = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/linkedin`;
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/linkedin/setup`;
   };
 
   return (

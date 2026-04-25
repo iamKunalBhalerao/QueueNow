@@ -36,12 +36,11 @@ export async function signin(data: { email: string; password: string }) {
 
 // Request for Getting LinkedIn Status
 export async function getLinkedInStatus() {
-  const response = await api.get("/auth/linkedin/status");
+  const response = await api.get("/linkedin/status");
   return response.data;
 }
 
 export async function IsAuthenticated(token?: string) {
-
   const headers = token ? { Cookie: `accessToken=${token}` } : undefined;
   const response = await api.get("/auth/is-authenticated", { headers });
 

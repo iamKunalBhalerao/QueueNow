@@ -4,7 +4,6 @@
   "description": "Queue engine for managing and processing background tasks.",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "check-types": "tsc --noEmit"

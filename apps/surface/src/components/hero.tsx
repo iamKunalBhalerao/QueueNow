@@ -6,22 +6,24 @@ import {
   CraftButtonIcon,
   CraftButtonLabel,
 } from "@/components/ui/craft-button";
+import { BackgroundPattern } from "@/components/bacckground-pattern";
 
 const Hero = ({ className }: { className?: string }) => {
   return (
     <div
       data-aos="fade-up"
-      className={`min-h-[calc(100vh-6rem)] flex flex-col items-center py-20 px-6 ${className}`}
+      className={`min-h-screen flex flex-col items-center justify-center py-20 px-6 ${className}`}
     >
+      <BackgroundPattern />
       <div className="md:mt-6 flex items-center justify-center">
         <div className="text-center max-w-2xl">
           <Badge className="bg-primary rounded-full py-1 border-none">
             v1.0.0 is available now! 🚀
           </Badge>
-          <h1 className="mt-6 max-w-[20ch] text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.2]! tracking-tight">
+          <h1 className="mt-6 mx-auto max-w-[20ch] text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.2]! tracking-tight">
             Customized Shadcn UI Blocks & Components
           </h1>
-          <p className="mt-6 max-w-[60ch] xs:text-lg">
+          <p className="mt-6 mx-auto max-w-[60ch] xs:text-lg">
             Explore a collection of Shadcn UI blocks and components, ready to
             preview and copy. Streamline your development workflow with
             easy-to-implement examples.

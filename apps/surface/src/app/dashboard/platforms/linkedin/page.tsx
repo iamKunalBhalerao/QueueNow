@@ -14,7 +14,6 @@ export default function LinkedIn() {
 
   async function fetchLinkedInStatus(setData: (data: LinkedInStatus) => void) {
     const data = await getLinkedInStatus();
-    console.log("data", data);
     setData(data as LinkedInStatus);
   }
 

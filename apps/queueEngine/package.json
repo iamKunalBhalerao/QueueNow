@@ -4,6 +4,7 @@
   "description": "Queue engine for managing and processing background tasks.",
   "main": "dist/server.js",
   "scripts": {
+    "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
     "check-types": "tsc --noEmit"
@@ -27,6 +28,7 @@
   },
   "dependencies": {
     "@infra/db": "workspace:*",
+    "axios": "^1.13.5",
     "bullmq": "^5.73.1",
     "dotenv": "^17.3.1",
     "ioredis": "^5.10.1"

@@ -84,6 +84,9 @@ importers:
       '@infra/db':
         specifier: workspace:*
         version: link:../../infra/db
+      axios:
+        specifier: ^1.13.5
+        version: 1.13.5
       bullmq:
         specifier: ^5.73.1
         version: 5.73.1

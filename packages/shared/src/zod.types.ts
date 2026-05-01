@@ -23,7 +23,7 @@ export const snapShotZodSchema = z.object({
 export const createLinkedInPostSchema = z.object({
   content: z.string().min(1, "Content is required"),
   media: z.array(z.string().url("Invalid URL")).optional().default([]),
-  scheduledAt: z.string().datetime().optional(),
+  scheduledAt: z.string().datetime(),
 });
 
 export type CreateLinkedInPostInput = z.infer<typeof createLinkedInPostSchema>;

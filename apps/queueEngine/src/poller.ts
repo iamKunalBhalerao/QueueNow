@@ -1,10 +1,10 @@
-import { prisma, PostStatus } from '@infra/db';
-import { postQueue } from './lib/queue';
+import { prisma, PostStatus } from "@infra/db";
+import { postQueue } from "./lib/queue";
 
 const POLL_INTERVAL_MS = 60 * 1000; // 1 minute
 
 export const startPoller = () => {
-  console.log('[Poller] Starting background database poller...');
+  console.log("[Poller] Starting background database poller...");
 
   let isPolling = false;
 
@@ -18,7 +18,7 @@ export const startPoller = () => {
         where: {
           status: PostStatus.SCHEDULED,
           scheduledAt: {
-             // Anything scheduled up to now
+            // Anything scheduled up to now
             lte: new Date(),
           },
         },
@@ -30,20 +30,20 @@ export const startPoller = () => {
         // Enqueue each post to BullMQ
         for (const post of duePosts) {
           await postQueue.add(
-            'publish-post', // name of the job
+            "publish-post", // name of the job
             { platform: post.platform, userId: post.userId },
-            { 
+            {
               // Using post.id as jobId guarantees that if the poller runs again
               // before the worker processes it, we don't enqueue a duplicate.
-              jobId: post.id 
-            }
+              jobId: post.id,
+            },
           );
-          
+
           console.log(`[Poller] Enqueued post ${post.id} for publishing.`);
         }
       }
     } catch (error) {
-      console.error('[Poller] Error occurred while polling database:', error);
+      console.error("[Poller] Error occurred while polling database:", error);
     } finally {
       isPolling = false;
     }
@@ -58,6 +58,6 @@ export const startPoller = () => {
   // Return a cleanup function
   return () => {
     clearInterval(interval);
-    console.log('[Poller] Stopped poller.');
+    console.log("[Poller] Stopped poller.");
   };
 };

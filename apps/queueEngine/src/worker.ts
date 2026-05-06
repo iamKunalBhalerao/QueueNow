@@ -1,6 +1,6 @@
 import { Worker, Job } from 'bullmq';
 import { prisma, PostStatus, Platform } from '@infra/db';
-import connection from './lib/redis';
+import connection from './redis';
 import { QUEUE_NAME } from './lib/queue';
 import { platformHandlers } from './handlers';
 

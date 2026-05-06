@@ -1,5 +1,5 @@
 import "dotenv/config";
-import redisConnection from "./lib/redis";
+import redisConnection from "./redis";
 import { startWorker } from "./worker";
 import { startPoller } from "./poller";
 

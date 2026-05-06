@@ -1,15 +1,13 @@
-import { Queue } from 'bullmq';
-import connection from '../redis';
+import { Queue } from "bullmq";
+import connection from "../redis";
+import { QUEUE_NAME } from "../config/app.config";
 
-export const QUEUE_NAME = 'postQueue';
-
-// Configure standard settings for the queue
 export const postQueue = new Queue(QUEUE_NAME, {
   connection,
   defaultJobOptions: {
     attempts: 3,
     backoff: {
-      type: 'exponential',
+      type: "exponential",
       delay: 5000,
     },
     removeOnComplete: true, // Optionally configure string to retain last N jobs e.g. { count: 100 }

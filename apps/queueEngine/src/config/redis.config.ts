@@ -1,39 +1,29 @@
-import {
-  REDIS_HOST,
-  REDIS_PASSWORD,
-  REDIS_PORT,
-  REDIS_USERNAME,
-} from "./env.config";
-
-const redisPort = Number(REDIS_PORT);
-
 export const redisConfig = {
-  host: REDIS_HOST!,
-  port:
-    Number.isFinite(redisPort) && redisPort >= 0 && redisPort < 65536
-      ? redisPort
-      : 6379,
-  username: REDIS_USERNAME || "default",
-  password: REDIS_PASSWORD!,
+  host: process.env.REDIS_HOST!,
+  port: Number(process.env.REDIS_PORT!),
+  username: process.env.REDIS_USERNAME! || "default",
+  password: process.env.REDIS_PASSWORD!,
 
-  tls: {
-    rejectUnauthorized: false,
-    servername: process.env.REDIS_HOST!,
-  },
+  ...(process.env.REDIS_USE_TLS === "true" && {
+    tls: {
+      rejectUnauthorized: false,
+      servername: process.env.REDIS_HOST!,
+    },
+    ssl: true,
+  }),
 
   maxRetriesPerRequest: null,
-  enableReadyCheck: false,
-  enableOfflineQueue: false,
-  lazyConnect: true,
+  enableReadyCheck: true,
+  enableOfflineQueue: true,
+  lazyConnect: false,
 
   // Reconnection
 
-  retryStrategy(times: number) {
+  retryStrategy(times: number): number | null {
     if (times > 10) {
       console.log("[Redis] Too many retries, giving up.");
+      return null;
     }
     return Math.min(times * 500, 2000);
   },
 };
-
-console.log(redisConfig);

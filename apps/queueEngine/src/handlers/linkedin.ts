@@ -1,6 +1,6 @@
 import { prisma } from "@infra/db";
 import axios from "axios";
-import { uploadImageToLinkedIn } from "../lib/linkedin";
+import { uploadImageToLinkedIn } from "../lib/linkedin.lib";
 
 /**
  * Handles posting to LinkedIn

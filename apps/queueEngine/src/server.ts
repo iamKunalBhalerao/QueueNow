@@ -1,9 +1,9 @@
 import "dotenv/config";
-import redisConnection from "./redis";
-import { startWorker } from "./worker";
+import connection from "./redis";
+import startWorker from "./worker";
 import { startPoller } from "./poller";
 
-const bootstrap = async () => {
+const bootUp = async () => {
   console.log("Starting QueueEngine Background Services...");
 
   // Start the background worker process
@@ -17,7 +17,7 @@ const bootstrap = async () => {
     console.log("Shutting down QueueEngine...");
     cleanupPoller();
     await worker.close();
-    await redisConnection.quit();
+    await connection.quit();
     console.log("Graceful shutdown complete.");
     process.exit(0);
   };
@@ -26,7 +26,7 @@ const bootstrap = async () => {
   process.on("SIGINT", shutdown);
 };
 
-bootstrap().catch((err) => {
-  console.error("Critical error in QueueEngine bootstrap:", err);
+bootUp().catch((err) => {
+  console.error("Error during startup:", err);
   process.exit(1);
 });

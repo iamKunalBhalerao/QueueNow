@@ -12,7 +12,7 @@ export const platformHandlers: Record<
   ) => Promise<{
     success: boolean;
     externalId?: string;
-    url?: string;
+    url?: string | null;
     error?: string;
   }>
 > = {

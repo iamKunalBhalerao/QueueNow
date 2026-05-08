@@ -1,12 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import {
-  createImmediatePostService,
-  createScheduledPostService,
+  createPostService,
   exchangeCodeForToken,
   getLinkedInProfile,
 } from "../services/linkedIn.service";
 import { prisma } from "@infra/db";
-import { createLinkedInPostSchema } from "@repo/shared";
+import {
+  CreateLinkedInPostRequest,
+  createLinkedInPostSchema,
+} from "@repo/shared";
 
 export const linkedInSetupController = async (
   _req: Request,
@@ -155,7 +157,7 @@ export const getLinkedInStatusController = async (
 };
 
 export const createLinkedInPostController = async (
-  req: Request,
+  req: CreateLinkedInPostRequest,
   res: Response,
   next: NextFunction,
 ) => {
@@ -163,11 +165,7 @@ export const createLinkedInPostController = async (
     const userId = req.user?.id as string;
     const validatedData = createLinkedInPostSchema.parse(req.body);
 
-    const isScheduled = req.query.scheduled === "true";
-
-    const post = isScheduled
-      ? await createScheduledPostService(userId, validatedData)
-      : await createImmediatePostService(userId, validatedData);
+    const post = await createPostService(userId, validatedData);
 
     res.status(201).json({
       success: true,

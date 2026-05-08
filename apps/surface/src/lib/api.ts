@@ -47,6 +47,36 @@ export async function IsAuthenticated(token?: string) {
   return response.data;
 }
 
+// LinkedIn Post Request
+export async function PostOnLinkedIn(data: {
+  content: string;
+  media: string[];
+  scheduledAt: Date;
+}) {
+  const requestBody = {
+    content: data.content,
+    media: data.media || [],
+    scheduledAt: data.scheduledAt.toISOString(),
+  };
+  const response = await api.post("/linkedin/create-post", requestBody);
+  return response.data;
+}
+
+// Twitter Post Request
+export async function PostOnTwitter(data: {
+  content: string;
+  media: string[];
+  scheduledAt: Date;
+}) {
+  const requestBody = {
+    content: data.content,
+    media: data.media || [],
+    scheduledAt: data.scheduledAt.toISOString(),
+  };
+  const response = await api.post("/twitter/create-post", requestBody);
+  return response.data;
+}
+
 export class ApiError extends Error {
   constructor(
     message: string,

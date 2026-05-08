@@ -1,5 +1,11 @@
-export default function CreatePost() {
+import CreatePost from "@/components/create-post";
+
+export default function CreatePostPage() {
   return (
-    <div>Create Post</div>
-  )
+    <>
+      <div className="">
+        <CreatePost />
+      </div>
+    </>
+  );
 }

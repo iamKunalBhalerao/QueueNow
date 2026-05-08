@@ -22,5 +22,20 @@ export interface TokenPayload {
   email: string;
 }
 
+export interface CreateLinkedInPost {
+  content: string;
+  media: string[];
+  scheduledAt: Date;
+}
+
+export interface CreateTwitterPost {
+  content: string;
+  media: string[];
+  scheduledAt: Date;
+}
+
 export type SignUpRequest = Request<{}, {}, SignUp>;
 export type SignInRequest = Request<{}, {}, SignIn>;
+export type IsAuthenticatedRequest = Request;
+export type CreateLinkedInPostRequest = Request<{}, {}, CreateLinkedInPost>;
+export type CreateTwitterPostRequest = Request<{}, {}, CreateTwitterPost>;

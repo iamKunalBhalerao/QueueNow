@@ -24,6 +24,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { useTransition } from "react";
 import { logoutAction } from "@/lib/auth";
 import { useHasHydrated } from "@/hooks/use-hydrated";
+import ThemeToggle from "./theme-toggle";
 
 const listItems = [
   {
@@ -98,13 +99,14 @@ const DropdownMenuUser = () => {
         align="end"
         sideOffset={12}
       >
-        <DropdownMenuLabel className="font-normal">
+        <DropdownMenuLabel className="font-normal flex justify-between items-center gap-2">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">{user.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {user.email}
             </p>
           </div>
+          <ThemeToggle />
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

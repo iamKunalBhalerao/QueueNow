@@ -92,7 +92,7 @@ export async function handleLinkedInPost(
   // Extract the LinkedIn post ID from the response
   const linkedinPostId = response.data?.id;
   const linkedInUrl = linkedinPostId
-    ? `https://www.linkedin.com/feed/update/urn:li:ugc:${linkedinPostId}`
+    ? `https://www.linkedin.com/feed/update/${linkedinPostId}`
     : null;
 
   // Update the LinkedInPost record with the response

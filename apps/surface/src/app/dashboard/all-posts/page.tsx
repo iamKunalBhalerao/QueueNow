@@ -1,5 +1,9 @@
+import ShowAllPosts from "@/components/show-all-post";
+
 export default function AllPosts() {
   return (
-    <div>All Posts</div>
-  )
+    <>
+      <ShowAllPosts />
+    </>
+  );
 }

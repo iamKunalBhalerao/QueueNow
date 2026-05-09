@@ -19,7 +19,7 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 app.get("/health", (_req: Request, res: Response) => {
@@ -42,10 +42,12 @@ app.get("/hello", (_req: Request, res: Response) => {
 // Importing Routes
 import authRouter from "./routes/auth.routes";
 import linkedInRouter from "./routes/linkedIn.routes";
+import userRouter from "./routes/user.routes";
 
 // Using Routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/linkedin", linkedInRouter);
+app.use("/api/v1/user", userRouter);
 
 app.use(globalErrorHandler);
 

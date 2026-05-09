@@ -77,6 +77,11 @@ export async function PostOnTwitter(data: {
   return response.data;
 }
 
+export async function getAllPosts() {
+  const response = await api.get("/user/all-posts");
+  return response.data;
+}
+
 export class ApiError extends Error {
   constructor(
     message: string,

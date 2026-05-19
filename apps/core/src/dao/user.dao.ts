@@ -3,6 +3,7 @@ import { prisma } from "@infra/db";
 export const findAllPosts = async (userId: string) => {
   return await prisma.post.findMany({
     where: { userId: userId },
+    orderBy: { createdAt: "desc" },
     select: {
       id: true,
       platform: true,
@@ -20,3 +21,7 @@ export const findAllPosts = async (userId: string) => {
     },
   });
 };
+
+// const posts = await findAllPosts(userId);
+// const latestPost = posts[0];
+// const restPosts = posts.slice(1);

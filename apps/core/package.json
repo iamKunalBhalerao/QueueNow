@@ -7,7 +7,8 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "lint": "eslint . --ext .ts --max-warnings 0"
   },
   "keywords": ["backend", "api", "server"],
   "author": "Kunal Bhalerao",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@infra/db": "workspace:*",
     "@repo/errors": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
     "@repo/shared": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/bcrypt": "^6.0.0",
@@ -23,6 +25,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.15.3",
+    "eslint": "^9.39.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },

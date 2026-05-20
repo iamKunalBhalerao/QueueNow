@@ -1,6 +1,7 @@
 import { Profile, TokenInfo } from "@/types/linkedin.types";
 import { useMemo } from "react";
 import DisconnectCard from "./disconnect-card";
+import Link from "next/link";
 
 export default function ConnectedCard({
   profile,
@@ -16,6 +17,8 @@ export default function ConnectedCard({
     );
   }, [token.expiresAt]);
 
+  console.log(profile);
+
   const barColor =
     token.percentRemaining > 30
       ? "bg-green-500"
@@ -25,7 +28,6 @@ export default function ConnectedCard({
 
   return (
     <>
-      {/* Profile card */}
       <div className="rounded-xl border p-5 space-y-4">
         <div className="flex items-center gap-3">
           <img
@@ -70,6 +72,14 @@ export default function ConnectedCard({
 
       {/* Disconnect */}
       <DisconnectCard />
+
+      <div className="rounded-xl border p-5">
+        <Link href="/post/create-post">
+          <p className="w-full inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
+            Schedule LinkedIn post
+          </p>
+        </Link>
+      </div>
     </>
   );
 }

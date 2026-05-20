@@ -14,7 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <SidebarProvider>
       <AppSidebar />
       <SidebarTrigger size={"icon-lg"} className="md:hidden p-4 shadow bg-blue-600 text-white absolute top-1 left-1" />
-      <DashboardContentContainer>{children}</DashboardContentContainer>
+      <DashboardContentContainer>
+        {children}
+      </DashboardContentContainer>
     </SidebarProvider>
   );
 }

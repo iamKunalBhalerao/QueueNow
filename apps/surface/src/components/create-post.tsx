@@ -1,10 +1,17 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { Twitter, Linkedin, Image as ImageIcon, Send } from "lucide-react";
+import {
+  Twitter,
+  Linkedin,
+  Image as ImageIcon,
+  Send,
+  Check,
+} from "lucide-react";
 import PostSchedulePicker from "./post-schedule-picker";
 import postHandler from "@/handlers/post-handler";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function CreatePost() {
   const router = useRouter();
@@ -34,6 +41,12 @@ export default function CreatePost() {
       if (!response.ok && response.success === false) {
         throw new Error(`Failed to post: ${response.statusText}`);
       }
+
+      toast("Post is Scheduled!", {
+        position: "top-right",
+        description: `Your post has been scheduled for ${new Date(response.data.scheduledAt).toLocaleString()}.`,
+        icon: <Check className="w-4 h-4 text-green-500" />,
+      });
 
       router.push("/dashboard/all-posts");
 

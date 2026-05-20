@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import { disconnectLinkedIn } from "@/lib/api";
+import { useState } from "react";
 
 export default function DisconnectCard() {
   const [confirming, setConfirming] = useState(false);
 
   const handleDisconnect = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/linkedin/disconnect`, {
-      method: "POST",
-      credentials: "include",
-    });
+    await disconnectLinkedIn();
     window.location.reload();
   };
 

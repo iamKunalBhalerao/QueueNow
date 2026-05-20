@@ -176,3 +176,32 @@ export const createLinkedInPostController = async (
     next(error);
   }
 };
+
+export const linkedInDisconnectController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const userId = req.user?.id as string;
+
+    await prisma.socialAccount.delete({
+      where: {
+        userId_platform: {
+          userId,
+          platform: "LINKEDIN",
+        },
+      },
+    });
+
+    res.clearCookie("linkedin_connected");
+    res.clearCookie("linkedin_access_token");
+
+    res.status(200).json({
+      success: true,
+      message: "LinkedIn account disconnected successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};

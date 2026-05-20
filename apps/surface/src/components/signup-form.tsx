@@ -21,6 +21,7 @@ import Link from "next/link";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useHasHydrated } from "@/hooks/use-hydrated";
 import Image from "next/image";
+import { toast } from "sonner";
 
 type SignupFormProps = ComponentProps<"div">;
 
@@ -56,9 +57,19 @@ export function SignupForm({ className, ...props }: SignupFormProps) {
 
       setAuth(result.user);
 
-      setSuccessMessage(
-        "Account created successfully! Redirecting to signin...",
-      );
+      toast.success("SignUp Successfully!", {
+        position: "top-right",
+        style: {
+          "--normal-bg":
+            "color-mix(in oklab, light-dark(var(--color-green-600), var(--color-green-400)) 10%, var(--background))",
+          "--normal-text":
+            "light-dark(var(--color-green-600), var(--color-green-400))",
+          "--normal-border":
+            "light-dark(var(--color-green-600), var(--color-green-400))",
+        } as React.CSSProperties,
+      });
+
+      setSuccessMessage("SignUp Successful!");
 
       reset();
 
@@ -248,7 +259,10 @@ export function SignupForm({ className, ...props }: SignupFormProps) {
 
               <FieldDescription className="text-center">
                 Already have an account?{" "}
-                <Link href="/auth/signin" className="font-medium hover:underline">
+                <Link
+                  href="/auth/signin"
+                  className="font-medium hover:underline"
+                >
                   Sign in
                 </Link>
               </FieldDescription>

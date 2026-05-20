@@ -82,6 +82,11 @@ export async function getAllPosts() {
   return response.data;
 }
 
+export async function disconnectLinkedIn() {
+  const response = await api.delete("/linkedin/disconnect");
+  return response.data;
+}
+
 export class ApiError extends Error {
   constructor(
     message: string,

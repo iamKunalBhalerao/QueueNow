@@ -1,7 +1,10 @@
-import React from 'react'
+import FeatureComingSoon from "@/components/feature-comming-soon";
+import React from "react";
 
 export default function Drafts() {
   return (
-    <div>Drafts</div>
-  )
+    <>
+      <FeatureComingSoon />
+    </>
+  );
 }

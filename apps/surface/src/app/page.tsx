@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import Features from "@/components/features";
 import Testimonials from "@/components/testimonials";
 import BackgroundWrapper from "@/components/background-wrapper";
+import { useEffect } from "react";
 
 export default function Home() {
   return (

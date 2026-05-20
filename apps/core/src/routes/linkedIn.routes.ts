@@ -4,6 +4,7 @@ import {
   linkedInCallbackController,
   getLinkedInStatusController,
   createLinkedInPostController,
+  linkedInDisconnectController,
 } from "../controllers/linkedIn.controller";
 import { authMiddleware } from "../middlewares/auth.middleware";
 
@@ -19,5 +20,7 @@ linkedInRouter
 linkedInRouter
   .route("/create-post")
   .post(authMiddleware, createLinkedInPostController);
+
+linkedInRouter.route("/disconnect").delete(authMiddleware, linkedInDisconnectController);
 
 export default linkedInRouter;

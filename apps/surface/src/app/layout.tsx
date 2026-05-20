@@ -7,6 +7,7 @@ import SmoothScroll from "@/components/smoothScroll";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -137,6 +138,7 @@ export default async function RootLayout({
           >
             <SmoothScroll>
               <TooltipProvider>{children}</TooltipProvider>
+              <Toaster />
             </SmoothScroll>
           </ThemeProvider>
         </AuthProvider>

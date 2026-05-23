@@ -42,7 +42,7 @@ export const linkedInCallbackController = async (
 
     const profile = await getLinkedInProfile(tokenData.access_token);
 
-    const CallBackData = await prisma.socialAccount.upsert({
+    await prisma.socialAccount.upsert({
       where: {
         userId_platform: {
           userId: userId,

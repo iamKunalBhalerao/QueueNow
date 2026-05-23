@@ -26,6 +26,11 @@ export async function handleTwitterPost(
   // Return simulated success
   return {
     success: true,
+    postDataToRemoveLater: {
+      postId,
+      userId,
+      platformAccountId,
+    },
     externalId: `mock_twitter_${Date.now()}`,
     url: "https://twitter.com/mock-post",
   };

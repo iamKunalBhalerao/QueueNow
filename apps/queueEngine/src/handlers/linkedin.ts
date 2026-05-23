@@ -12,7 +12,7 @@ import { uploadImageToLinkedIn } from "../lib/linkedin.lib";
 
 export async function handleLinkedInPost(
   postId: string,
-  userId: string,
+  // userId: string,
   platformAccountId: string,
 ) {
   const post = await prisma.post.findUnique({

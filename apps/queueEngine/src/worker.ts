@@ -115,9 +115,9 @@ export default function startWorker() {
   );
 
   worker.on("failed", (job, err) => {
-    // console.error(
-    //   `[Worker] Job ${job?.id} has failed with error: ${err.message}`,
-    // );
+    console.error(
+      `[Worker] Job ${job?.id} has failed with error: ${err.message}`,
+    );
   });
 
   // worker.on("completed", (job) => {

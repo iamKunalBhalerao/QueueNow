@@ -2,11 +2,13 @@
   "name": "@infra/db",
   "version": "0.0.0",
   "private": true,
-  "main": "src/index.ts",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/src/index.js"
   },
   "scripts": {
+    "build": "tsc",
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio"
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^25.3.0",
+    "@types/pg": "8.20.0",
     "prisma": "^7.8.0",
     "typescript": "^5.9.3"
   },

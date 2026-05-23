@@ -1,7 +1,7 @@
 import { Job, Worker } from "bullmq";
 import { QUEUE_NAME } from "./config/app.config";
 import connection from "./redis";
-import { Platform, PostStatus, prisma } from "@infra/db";
+import { PostStatus, prisma } from "@infra/db";
 import { platformHandlers } from "./handlers";
 
 export default function startWorker() {
@@ -46,7 +46,7 @@ export default function startWorker() {
       }
 
       // Get the correct handler for the platform
-      const platformHandler = platformHandlers[post.platform as Platform];
+      const platformHandler = platformHandlers[post.platform  as unknown as keyof typeof platformHandlers];
 
       if (!platformHandler) {
         throw new Error(`Unsupported platform: ${post.platform}`);

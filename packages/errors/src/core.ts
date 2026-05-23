@@ -8,6 +8,6 @@ export class CoreError extends Error {
 
     Object.setPrototypeOf(this, CoreError.prototype);
 
-    Error.captureStackTrace(this, this.constructor);
+    // Error.captureStackTrace(this, this.constructor);
   }
 }

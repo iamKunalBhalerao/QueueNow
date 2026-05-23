@@ -40,7 +40,7 @@ export async function handleLinkedInPost(
 
   // Map through your ImageKit URLs to get LinkedIn Assets
   const mediaAssets = await Promise.all(
-    post.linkedInPost.media.map((url) =>
+    post.linkedInPost.media.map((url: string) =>
       uploadImageToLinkedIn(
         url,
         socialAccount.accessToken,
@@ -58,7 +58,7 @@ export async function handleLinkedInPost(
 
   // Add media if present
   if (post.linkedInPost.media?.length) {
-    shareContent.media = mediaAssets.map((assetUrn) => ({
+    shareContent.media = mediaAssets.map((assetUrn: string) => ({
       status: "READY",
       media: assetUrn, // This is now the URN, not the URL
       title: { text: "Image Title" },

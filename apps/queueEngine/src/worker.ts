@@ -5,9 +5,9 @@ import { Platform, PostStatus, prisma } from "@infra/db";
 import { platformHandlers } from "./handlers";
 
 export default function startWorker() {
-  console.log(
-    `[Worker] Starting background worker for queue: ${QUEUE_NAME}...`,
-  );
+  // console.log(
+  //   `[Worker] Starting background worker for queue: ${QUEUE_NAME}...`,
+  // );
 
   const worker = new Worker(
     QUEUE_NAME,
@@ -19,7 +19,7 @@ export default function startWorker() {
         throw new Error("Job is missing a valid ID (postId).");
       }
 
-      console.log(`[Worker] Processing job for post ${postId}`);
+      // console.log(`[Worker] Processing job for post ${postId}`);
 
       // 1. Fetch the post from database to verify it exists and is still SCHEDULED
       const post = await prisma.post.findUnique({
@@ -28,9 +28,9 @@ export default function startWorker() {
       });
 
       if (!post) {
-        console.warn(
-          `[Worker] Post ${postId} not found in database. Skipping.`,
-        );
+        // console.warn(
+        //   `[Worker] Post ${postId} not found in database. Skipping.`,
+        // );
         return; // Complete silently if it doesn't exist anymore
       }
 
@@ -39,9 +39,9 @@ export default function startWorker() {
         post.status !== PostStatus.SCHEDULED &&
         post.status !== PostStatus.DRAFT
       ) {
-        console.log(
-          `[Worker] Post ${postId} is in status ${post.status}. Skipping.`,
-        );
+        // console.log(
+        //   `[Worker] Post ${postId} is in status ${post.status}. Skipping.`,
+        // );
         return;
       }
 
@@ -84,7 +84,7 @@ export default function startWorker() {
               error: null, // clear out any old errors
             },
           });
-          console.log(`[Worker] Successfully published post ${post.id}`);
+          // console.log(`[Worker] Successfully published post ${post.id}`);
         } else {
           throw new Error(
             result.error || "Unknown error occurred during posting",
@@ -92,10 +92,10 @@ export default function startWorker() {
         }
       } catch (error: any) {
         // 4. Mark as FAILED on failure
-        console.error(
-          `[Worker] Failed to publish post ${post.id}:`,
-          error.message,
-        );
+        // console.error(
+        //   `[Worker] Failed to publish post ${post.id}:`,
+        //   error.message,
+        // );
 
         await prisma.post.update({
           where: { id: post.id },
@@ -115,14 +115,14 @@ export default function startWorker() {
   );
 
   worker.on("failed", (job, err) => {
-    console.error(
-      `[Worker] Job ${job?.id} has failed with error: ${err.message}`,
-    );
+    // console.error(
+    //   `[Worker] Job ${job?.id} has failed with error: ${err.message}`,
+    // );
   });
 
-  worker.on("completed", (job) => {
-    console.log(`[Worker] Job ${job.id} has completed successfully`);
-  });
+  // worker.on("completed", (job) => {
+  //   console.log(`[Worker] Job ${job.id} has completed successfully`);
+  // });
 
   return worker;
 }

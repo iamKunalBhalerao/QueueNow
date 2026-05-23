@@ -4,7 +4,7 @@ import { postQueue } from "./lib/queue";
 const POLL_INTERVAL_MS = 60 * 1000; // 1 minute
 
 export const startPoller = () => {
-  console.log("[Poller] Starting background database poller...");
+  // console.log("[Poller] Starting background database poller...");
 
   let isPolling = false;
 
@@ -25,7 +25,7 @@ export const startPoller = () => {
       });
 
       if (duePosts.length > 0) {
-        console.log(`[Poller] Found ${duePosts.length} posts to schedule.`);
+        // console.log(`[Poller] Found ${duePosts.length} posts to schedule.`);
 
         // Enqueue each post to BullMQ
         for (const post of duePosts) {
@@ -39,11 +39,11 @@ export const startPoller = () => {
             },
           );
 
-          console.log(`[Poller] Enqueued post ${post.id} for publishing.`);
+          // console.log(`[Poller] Enqueued post ${post.id} for publishing.`);
         }
       }
     } catch (error) {
-      console.error("[Poller] Error occurred while polling database:", error);
+      // console.error("[Poller] Error occurred while polling database:", error);
     } finally {
       isPolling = false;
     }
@@ -58,6 +58,6 @@ export const startPoller = () => {
   // Return a cleanup function
   return () => {
     clearInterval(interval);
-    console.log("[Poller] Stopped poller.");
+    // console.log("[Poller] Stopped poller.");
   };
 };

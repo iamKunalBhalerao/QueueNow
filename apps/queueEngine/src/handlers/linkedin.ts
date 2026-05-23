@@ -116,9 +116,9 @@ export async function handleLinkedInPost(
     },
   });
 
-  console.log(
-    `[LinkedIn Handler] Successfully posted ${postId} for user ${userId} on account ${platformAccountId}`,
-  );
+  // console.log(
+  //   `[LinkedIn Handler] Successfully posted ${postId} for user ${userId} on account ${platformAccountId}`,
+  // );
 
   return {
     success: true,

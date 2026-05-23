@@ -60,7 +60,7 @@ export const handleUpload = async (
       },
       abortSignal: abortController.signal,
     });
-    console.log("Upload response:", uploadResponse);
+    // console.log("Upload response:", uploadResponse);
     return uploadResponse;
   } catch (error) {
     // Handle specific error types provided by the ImageKit SDK.

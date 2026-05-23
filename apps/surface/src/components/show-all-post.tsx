@@ -74,7 +74,6 @@ export default function ShowAllPosts() {
 
       try {
         const response = (await getAllPosts()) as PostResponse;
-        console.log(response)
         if (mounted) {
           setPosts(response.posts ?? []);
         }

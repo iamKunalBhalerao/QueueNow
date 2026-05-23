@@ -17,8 +17,6 @@ export default function ConnectedCard({
     );
   }, [token.expiresAt]);
 
-  console.log(profile);
-
   const barColor =
     token.percentRemaining > 30
       ? "bg-green-500"

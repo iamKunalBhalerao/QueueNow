@@ -43,7 +43,7 @@ export const startPoller = () => {
         }
       }
     } catch (error) {
-      // console.error("[Poller] Error occurred while polling database:", error);
+      console.error("[Poller] Error occurred while polling database:", error);
     } finally {
       isPolling = false;
     }
@@ -58,6 +58,6 @@ export const startPoller = () => {
   // Return a cleanup function
   return () => {
     clearInterval(interval);
-    // console.log("[Poller] Stopped poller.");
+    console.log("[Poller] Stopped poller.");
   };
 };

@@ -7,7 +7,7 @@ export const platformHandlers: Record<
   Platform,
   (
     postId: string,
-    userId: string,
+    // userId: string,
     platformAccountId: string,
   ) => Promise<{
     success: boolean;

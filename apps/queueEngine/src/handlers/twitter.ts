@@ -7,7 +7,7 @@
  */
 export async function handleTwitterPost(
   postId: string,
-  userId: string,
+  // userId: string,
   platformAccountId: string,
 ) {
   // TODO: Implement actual Twitter/X API integration here
@@ -28,7 +28,7 @@ export async function handleTwitterPost(
     success: true,
     postDataToRemoveLater: {
       postId,
-      userId,
+      // userId,
       platformAccountId,
     },
     externalId: `mock_twitter_${Date.now()}`,

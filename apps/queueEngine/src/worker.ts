@@ -46,11 +46,16 @@ export default function startWorker() {
       }
 
       // Get the correct handler for the platform
-      const platformHandler = platformHandlers[post.platform  as unknown as keyof typeof platformHandlers];
+      const platformHandler =
+        platformHandlers[
+          post.platform as unknown as keyof typeof platformHandlers
+        ];
 
       if (!platformHandler) {
         throw new Error(`Unsupported platform: ${post.platform}`);
       }
+
+      // console.log("platform handler is ", platformHandler);
 
       // We need to fetch the user's social account for this platform
       const socialAccount = await prisma.socialAccount.findFirst({
@@ -67,21 +72,21 @@ export default function startWorker() {
       }
 
       try {
-        // 2. Call the strategy pattern handler
+        // Call the strategy pattern handler
         const result = await platformHandler(
           post.id,
-          post.userId,
+          // post.userId,
           socialAccount.id,
         );
 
         if (result.success) {
-          // 3. Mark as PUBLISHED on success
+          // Mark as PUBLISHED on success
           await prisma.post.update({
             where: { id: post.id },
             data: {
               status: PostStatus.PUBLISHED,
               publishedAt: new Date(),
-              error: null, // clear out any old errors
+              error: null,
             },
           });
           // console.log(`[Worker] Successfully published post ${post.id}`);
@@ -114,11 +119,11 @@ export default function startWorker() {
     },
   );
 
-  worker.on("failed", (job, err) => {
-    console.error(
-      `[Worker] Job ${job?.id} has failed with error: ${err.message}`,
-    );
-  });
+  // worker.on("failed", (job, err) => {
+  //   console.error(
+  //     `[Worker] Job ${job?.id} has failed with error: ${err.message}`,
+  //   );
+  // });
 
   // worker.on("completed", (job) => {
   //   console.log(`[Worker] Job ${job.id} has completed successfully`);

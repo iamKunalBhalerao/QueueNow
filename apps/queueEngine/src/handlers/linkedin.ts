@@ -15,7 +15,8 @@ export async function handleLinkedInPost(
   // userId: string,
   platformAccountId: string,
 ) {
-  const post = await prisma.post.findUnique({
+
+  const post = await prisma.post.findFirst({
     where: { id: postId },
     include: { linkedInPost: true },
   });
@@ -28,7 +29,7 @@ export async function handleLinkedInPost(
     throw new Error(`LinkedIn post data not found for post ${postId}`);
   }
 
-  const socialAccount = await prisma.socialAccount.findUnique({
+  const socialAccount = await prisma.socialAccount.findFirst({
     where: { id: platformAccountId },
   });
 

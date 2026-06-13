@@ -4,19 +4,19 @@ import { redisConfig } from "./config/redis.config";
 const connection = new Redis(redisConfig);
 
 // connection.on("connect", () => {
-//   console.log("[Redis] Connected to Redis server.");
+// console.log("[Redis] Connected to Redis server.");
 // });
 
-// connection.on("error", (err) => {
-//   console.error("[Redis] Connection error:", err.message);
-// });
+connection.on("error", (err) => {
+  console.error("[Redis] Connection error:", err.message);
+});
 
 // connection.on("close", () => {
-//   console.warn("[Redis] Connection closed.");
+// console.warn("[Redis] Connection closed.");
 // });
 
 // connection.on("reconnecting", (time: number) => {
-//   console.log(`[Redis] Attempting to reconnect in ${time}ms...`);
+// console.log(`[Redis] Attempting to reconnect in ${time}ms...`);
 // });
 
 // connection.on("end", () => {

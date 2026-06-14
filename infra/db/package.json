@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate": "prisma migrate",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio"
   },

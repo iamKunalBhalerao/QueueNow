@@ -1,5 +1,5 @@
 import { Queue } from "bullmq";
-import connection from "../redis";
+import connection from "../jobs/redis";
 import { QUEUE_NAME } from "../config/app.config";
 
 export const postQueue = new Queue(QUEUE_NAME, {

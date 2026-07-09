@@ -1,5 +1,5 @@
 import { prisma, PostStatus } from "@infra/db";
-import { postQueue } from "./lib/queue";
+import { postQueue } from "../lib/queue.lib";
 
 const POLL_INTERVAL_MS = 60 * 1000; // 1 minute
 

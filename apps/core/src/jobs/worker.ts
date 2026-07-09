@@ -1,8 +1,8 @@
 import { Job, Worker } from "bullmq";
-import { QUEUE_NAME } from "./config/app.config";
+import { QUEUE_NAME } from "../config/app.config";
 import connection from "./redis";
 import { PostStatus, prisma } from "@infra/db";
-import { platformHandlers } from "./handlers";
+import { platformHandlers } from "../handlers/main.handler";
 
 export default function startWorker() {
   // console.log(
@@ -12,7 +12,6 @@ export default function startWorker() {
   const worker = new Worker(
     QUEUE_NAME,
     async (job: Job) => {
-      // Job.id is the postId as configured in the poller
       const postId = job.id;
 
       if (!postId) {
@@ -21,7 +20,7 @@ export default function startWorker() {
 
       // console.log(`[Worker] Processing job for post ${postId}`);
 
-      // 1. Fetch the post from database to verify it exists and is still SCHEDULED
+      // 1. Fetch post
       const post = await prisma.post.findUnique({
         where: { id: postId },
         include: { user: true },
@@ -34,7 +33,7 @@ export default function startWorker() {
         return; // Complete silently if it doesn't exist anymore
       }
 
-      // If it's already published or failed, we just skip it (prevent double execution)
+      // If it's already published or failed, skip it (prevent double execution)
       if (
         post.status !== PostStatus.SCHEDULED &&
         post.status !== PostStatus.DRAFT
@@ -45,7 +44,7 @@ export default function startWorker() {
         return;
       }
 
-      // Get the correct handler for the platform
+      // Get correct handler for platform
       const platformHandler =
         platformHandlers[
           post.platform as unknown as keyof typeof platformHandlers
@@ -57,7 +56,7 @@ export default function startWorker() {
 
       // console.log("platform handler is ", platformHandler);
 
-      // We need to fetch the user's social account for this platform
+      // fetch user's social account
       const socialAccount = await prisma.socialAccount.findFirst({
         where: {
           userId: post.userId,
@@ -80,7 +79,7 @@ export default function startWorker() {
         );
 
         if (result.success) {
-          // Mark as PUBLISHED on success
+          // Mark PUBLISHED on success
           await prisma.post.update({
             where: { id: post.id },
             data: {
@@ -96,7 +95,6 @@ export default function startWorker() {
           );
         }
       } catch (error: any) {
-        // 4. Mark as FAILED on failure
         // console.error(
         //   `[Worker] Failed to publish post ${post.id}:`,
         //   error.message,
@@ -110,7 +108,7 @@ export default function startWorker() {
           },
         });
 
-        throw error; // Rethrow to let BullMQ know the job failed
+        throw error;
       }
     },
     {

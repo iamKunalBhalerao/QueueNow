@@ -1,5 +1,5 @@
-import { handleLinkedInPost } from "./linkedin";
-import { handleTwitterPost } from "./twitter";
+import { handleLinkedInPost } from "./linkedin.handler";
+import { handleTwitterPost } from "./twitter.handler";
 
 export type Platform = "LINKEDIN" | "TWITTER";
 

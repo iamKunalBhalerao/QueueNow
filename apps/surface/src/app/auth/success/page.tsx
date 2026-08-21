@@ -8,7 +8,7 @@ export default function Success() {
   useEffect(() => {
     setTimeout(() => {
       router.push("/dashboard/platforms/linkedin");
-    }, 3000);
+    }, 1000);
   }, []);
   return (
     <>

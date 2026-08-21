@@ -5,7 +5,8 @@
   "description": "Shared Errors",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
   },
   "types": "src/index.ts",
   "exports": {

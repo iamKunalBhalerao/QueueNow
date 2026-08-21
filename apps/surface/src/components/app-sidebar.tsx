@@ -11,7 +11,7 @@ import {
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
-import Link from "next/link";
+// import Link from "next/navigation";
 import DashboardNavigation from "@/components/nav-main";
 import { dashboardRoutes } from "@/lib/dashboardData";
 import { CopyPlus } from "lucide-react";
@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/tooltip";
 import { NeuralButton } from "@/components/ui/neural-button";
 import DropdownMenuUser from "@/components/user-profile";
+import Link from "next/link";
 
 export default function AppSidebar() {
   const { state } = useSidebar();
@@ -71,13 +72,15 @@ export default function AppSidebar() {
               transition={{ duration: 0.8 }}
               className="mx-2"
             >
-              <NeuralButton className="w-full">
-                {isCollapsed ? <CopyPlus /> : "Connect Platform"}
-              </NeuralButton>
+              <Link href="/post/create-post">
+                <NeuralButton className="w-full">
+                  {isCollapsed ? <CopyPlus /> : "Create Post"}
+                </NeuralButton>
+              </Link>
             </motion.div>
           </TooltipTrigger>
           <TooltipContent side="right">
-            <p>Connect Platform</p>
+            <p>Create Post</p>
           </TooltipContent>
         </Tooltip>
 

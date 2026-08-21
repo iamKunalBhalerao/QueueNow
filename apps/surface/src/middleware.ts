@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const runtime = "edge";
+
 const PROTECTED_ROUTES = [
   "/dashboard",
   "/dashboard/profile",
@@ -7,7 +9,7 @@ const PROTECTED_ROUTES = [
 ];
 const AUTH_ROUTES = ["/auth/signin", "/auth/signup"];
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const token = request.cookies.get("accessToken")?.value;
   const { pathname } = request.nextUrl;
 
